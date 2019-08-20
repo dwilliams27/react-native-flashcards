@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Text, View, TextInput, StyleSheet } from 'react-native'
+import { Button, Text, View, TextInput, StyleSheet, Alert } from 'react-native'
 
 class AddDeckView extends Component {
   constructor(props) {
@@ -20,6 +20,13 @@ class AddDeckView extends Component {
     const obj = {
       name: this.state.text,
       cards: []
+    }
+    let dup = false
+    for(d in this.props.screenProps.decks) {
+      if(this.props.screenProps.decks[d].name === this.state.text) {
+        Alert.alert('Deck name already taken; Please specify a unique name')
+        return
+      }
     }
     this.props.screenProps.addDeck(obj)
   }

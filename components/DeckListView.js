@@ -20,11 +20,15 @@ class DeckListView extends Component {
     
     return <View style={this.styles.container}>
       {this.props.screenProps.dlv ?
-        this.props.screenProps.decks !== undefined && Object.keys(this.props.screenProps.decks).map(deck => {
-        return <View key={deck}>
-          <Button title={this.props.screenProps.decks[deck].name} onPress={() => this.viewDeck(this.props.screenProps.decks[deck].name)} />
+        this.props.screenProps.decks !== undefined && 
+        <View>
+          <Text>Decks:</Text>
+          {Object.keys(this.props.screenProps.decks).map(deck => {
+            return <View key={deck}>
+              <Button title={this.props.screenProps.decks[deck].name} onPress={() => this.viewDeck(this.props.screenProps.decks[deck].name)} />
+            </View>
+          })} 
         </View>
-      }) 
       : <DeckView deck={this.props.screenProps.activeDeck} addCard={this.props.screenProps.addCard} decksView={this.props.screenProps.decksView} completeQuiz={this.props.screenProps.completeQuiz} />
       }
     </View>
