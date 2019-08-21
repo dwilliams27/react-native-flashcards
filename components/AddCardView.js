@@ -4,7 +4,7 @@ import { Button, Text, View, TextInput, StyleSheet } from 'react-native'
 class AddCardView extends Component {
   constructor(props) {
     super(props)
-    this.state = { question: 'Question', answer: 'Answer' }
+    this.state = { question: '', answer: '' }
   }
 
   styles = StyleSheet.create({
@@ -24,8 +24,8 @@ class AddCardView extends Component {
     this.props.addCard(obj, this.props.deck)
     this.props.deckView()
     this.setState({
-      question: 'Question',
-      answer: 'Answer'
+      question: '',
+      answer: ''
     })
   }
 

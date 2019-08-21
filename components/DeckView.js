@@ -18,7 +18,7 @@ class DeckView extends Component {
     return <View>
       {
         this.state.view === 'deck' && <View>
-          <Text>{this.props.deck.name}</Text>
+          <Text>{`${this.props.deck.name} (${this.props.deck.cards.length} cards)`}</Text>
           <Button title="Add Card" onPress={() => this.setView('add')} ></Button>
           <Button title="Start quiz" onPress={() => this.setView('quiz')} ></Button>
           <Button title="Back to decks view" onPress={() => this.props.decksView()} ></Button>

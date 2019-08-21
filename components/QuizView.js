@@ -5,7 +5,8 @@ import CardView from './CardView'
 class QuizView extends Component {
   state = {
     index: 0,
-    numCorrect: 0
+    numCorrect: 0,
+    numIncorrect: 0
   }
 
   showNextView = () => {
@@ -25,10 +26,17 @@ class QuizView extends Component {
     })
   }
 
-  resetQuiz() {
+  notifyIncorrect = () => {
+    this.setState({
+      numIncorrect: this.state.numIncorrect + 1
+    })
+  }
+
+  resetQuiz = () => {
     this.setState({
       index: 0,
-      numCorrect: 0
+      numCorrect: 0,
+      numIncorrect: 0
     })
   }
 
@@ -49,9 +57,12 @@ class QuizView extends Component {
         showNextView={this.showNextView}
         reset={this.resetQuiz} 
         correct={this.notifyCorrect}
+        incorrect={this.notifyIncorrect}
         numCorrect={this.state.numCorrect}
+        numIncorrect={this.state.numIncorrect}
         index={this.state.index}
-        length={this.props.deck.cards.length} />
+        length={this.props.deck.cards.length}
+        resetQuiz={this.resetQuiz} />
     </View>
   }
 }

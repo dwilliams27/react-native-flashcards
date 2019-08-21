@@ -29,6 +29,7 @@ class AddDeckView extends Component {
       }
     }
     this.props.screenProps.addDeck(obj)
+    this.props.navigation.navigate('Decks')
   }
 
   render() {

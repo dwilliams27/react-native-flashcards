@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Button } from 'react-native'
 import DeckView from './DeckView'
 
 class DeckListView extends Component {
@@ -9,6 +9,7 @@ class DeckListView extends Component {
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      padding: 40
     },
   })
 
@@ -21,14 +22,14 @@ class DeckListView extends Component {
     return <View style={this.styles.container}>
       {this.props.screenProps.dlv ?
         this.props.screenProps.decks !== undefined && 
-        <View>
+        <ScrollView>
           <Text>Decks:</Text>
           {Object.keys(this.props.screenProps.decks).map(deck => {
             return <View key={deck}>
-              <Button title={this.props.screenProps.decks[deck].name} onPress={() => this.viewDeck(this.props.screenProps.decks[deck].name)} />
+              <Button title={`${this.props.screenProps.decks[deck].name} (${this.props.screenProps.decks[deck].cards.length} cards)`} onPress={() => this.viewDeck(this.props.screenProps.decks[deck].name)} />
             </View>
           })} 
-        </View>
+        </ScrollView>
       : <DeckView deck={this.props.screenProps.activeDeck} addCard={this.props.screenProps.addCard} decksView={this.props.screenProps.decksView} completeQuiz={this.props.screenProps.completeQuiz} />
       }
     </View>

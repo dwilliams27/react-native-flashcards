@@ -19,6 +19,13 @@ class CardView extends Component {
     this.props.showNextView()
   }
 
+  restart = () => {
+    this.setState({
+      showFront: true
+    })
+    this.props.resetQuiz()
+  }
+
   render() {
     return <View>
       <Text>{`Cards remaining: ${this.props.remaining}`}</Text>
@@ -35,11 +42,13 @@ class CardView extends Component {
             {
               (this.props.index + 1 >= this.props.length)
                 ? <View>
-                    <Text>You got {this.props.numCorrect} answers correct</Text>
+                    <Text>You got {this.props.numCorrect} answers correct and {this.props.numIncorrect} incorrect</Text>
+                    <Button onPress={this.restart} title="Restart quiz"></Button>
                     <Button onPress={this.nextView} title="Return to deck view"></Button>
                   </View>
                 : <View>
                     <Button onPress={() => this.props.correct()} title="Mark Correct"></Button>
+                    <Button onPress={() => this.props.incorrect()} title="Mark Incorrect"></Button>
                     <Button onPress={this.nextView} title="Next"></Button>
                   </View>
             }
